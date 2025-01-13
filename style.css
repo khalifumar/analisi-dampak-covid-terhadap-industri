@@ -1,3 +1,4 @@
+/* Home */
 div.stVerticalBlock.st-emotion-cache-112g0wn.eiemyj3{
     background-color: white;
     border-radius: 10px;
@@ -10,6 +11,13 @@ div.stVerticalBlock.st-emotion-cache-t9yc3p.eiemyj3{
 
 div.stExpander.st-emotion-cache-0.enj44ev0{
     background-color: white
+}
+
+
+
+/* Sidebar */
+stSidebar st-emotion-cache-vmpjyt e1dbuyne0 {
+    background-color: #577BC1;
 }
 
 
@@ -65,10 +73,6 @@ div.st-emotion-cache-phe2gf.e1nzilvr5{
 
 
 
-/* Sidebar */
-div.st-emotion-cache-6qob1r.eczjsme11 {
-    background-color: #577BC1;
-}
 
 div.stVerticalBlock.st-emotion-cache-64tehz.e1f1d6gn2{
     color: black;
