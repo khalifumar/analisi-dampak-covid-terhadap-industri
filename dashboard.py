@@ -3,7 +3,6 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-import os
 
 # Kumpulan Data
 # Jenis Kelamin Tiap Tahum di Perkotaan pada 34 Provinsi 
@@ -29,13 +28,8 @@ data_status_pekerjaan_2018 = pd.read_csv('data/penduduk/data_jumlah_penduduk_pro
 st.set_page_config(layout='wide')
 
 
-css_path = os.path.join('style.css')
-try:
-    with open(css_path) as f:
-        css = f.read()
-    st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
-except FileNotFoundError:
-    st.error(f"File {css_path} not found!")
+with open('style.css') as f:
+    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 st.sidebar.title("Pilih Halaman:")
 option_menu = st.sidebar.selectbox('', ['Home', 'Analisis Data', 'Kumpulan Data'])
