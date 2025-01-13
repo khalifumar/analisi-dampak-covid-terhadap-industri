@@ -37,6 +37,8 @@ try:
 except FileNotFoundError:
     st.error(f"File {css_path} tidak ditemukan!")
 
+st.sidebar.title("Pilih Halaman:")
+option_menu = st.sidebar.selectbox('', ['Home', 'Analisis Data', 'Kumpulan Data'])
 with st.sidebar:
     with st.container(border=True):
         st.subheader('Noted:')
