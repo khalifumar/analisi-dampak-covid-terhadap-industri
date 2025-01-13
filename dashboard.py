@@ -29,8 +29,7 @@ data_status_pekerjaan_2018 = pd.read_csv('data/penduduk/data_jumlah_penduduk_pro
 st.set_page_config(layout='wide')
 
 
-css_path = 'style.css'
-
+css_path = os.path.join('assets', 'style.css')
 try:
     with open(css_path) as f:
         css = f.read()
