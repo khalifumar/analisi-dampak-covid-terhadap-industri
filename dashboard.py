@@ -63,16 +63,17 @@ with st.sidebar:
 
 if option_menu == 'Analisis Data':
     st.title('Analisis Data')
-    st.subheader("Pilih Data yang Ingin Dianalisis:")
 
-    options_analisis = st.multiselect("", [
-            "Dampak Covid-19 Terhadap Jumlah Pertumbuhan Penduduk", 
-            "Jumlah Pertumbuhan Pencari Kerja", 
-            "Pertumbuhan Lowongan Pekerjaan", 
-            "Pertumbuhan Penempatan / Penerimaan Tenaga Kerja",
-            "Pertumbuhan Penduduk Pernah Bekerja"
-        ]
-    )
+    with st.container(border=True):
+        st.subheader("Pilih Data yang Ingin Dianalisis:")
+        options_analisis = st.multiselect("", [
+                "Dampak Covid-19 Terhadap Jumlah Pertumbuhan Penduduk", 
+                "Jumlah Pertumbuhan Pencari Kerja", 
+                "Pertumbuhan Lowongan Pekerjaan", 
+                "Pertumbuhan Penempatan / Penerimaan Tenaga Kerja",
+                "Pertumbuhan Penduduk Pernah Bekerja"
+            ]
+        )
 
     if "Dampak Covid-19 Terhadap Jumlah Pertumbuhan Penduduk" in options_analisis:
         with st.container(border=True):
