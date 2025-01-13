@@ -1,0 +1,88 @@
+div.stMainBlockContainer.block-container.st-emotion-cache-1jicfl2.ea3mdgi5{
+    background-color: white;
+}
+
+div.st-emotion-cache-4uzi61.e1f1d6gn0{
+    border-radius: 10px;
+    background-color: #FFEB00;
+    margin: 10px;
+    box-shadow: 7px 10px 10px rgba(0, 0, 0, 0.2);
+}
+
+.countainer-2{
+    color: white;
+    background-color: #FFFFFF
+}
+
+div.stColumn.st-emotion-cache-1r6slb0.e1f1d6gn3 {
+    padding: 20px, 20px, 20px, 20px;
+    padding: 5%, 5%, 5%, 10%;
+    border-radius: 10px;
+}
+
+div.stVerticalBlock.st-emotion-cache-7alizx.e1f1d6gn2{
+    background-color: white;
+    border-radius: 10px;
+}
+
+div.stHorizontalBlock.st-emotion-cache-ocqkz7.e1f1d6gn5{
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+div.st-emotion-cache-1wmy9hl.e1f1d6gn1{
+    border-radius: 10px;
+}
+
+div.stExpander.st-emotion-cache-0.eqpbllx4{
+    background-color: white
+
+}
+
+
+/* text */
+div.st-emotion-cache-1puwf6r.e1nzilvr5{
+    color: black;
+}
+
+div.st-emotion-cache-phe2gf.e1nzilvr5{
+    color: black;
+}
+
+
+
+/* Sidebar */
+div.st-emotion-cache-6qob1r.eczjsme11 {
+    background-color: #577BC1;
+}
+
+div.stVerticalBlock.st-emotion-cache-64tehz.e1f1d6gn2{
+    color: black;
+}
+
+div.st-emotion-cache-phe2gf.e1nzilvr5{
+    color: black;
+    font-weight: bold;
+
+}
+
+
+
+
+/* Button */
+div.stButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Membuat tombol selebar container */
+    height: 40px; /* Menentukan tinggi tombol */
+    margin: 5px 0; /* Jarak antar tombol */
+    background-color: #CDCDCD;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
