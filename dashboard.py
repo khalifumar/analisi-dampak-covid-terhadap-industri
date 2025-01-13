@@ -28,11 +28,14 @@ data_status_pekerjaan_2018 = pd.read_csv('data/penduduk/data_jumlah_penduduk_pro
 st.set_page_config(layout='wide')
 
 
-with open('style.css') as f:
-    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+css_path = 'style.css'
 
-st.sidebar.title("Pilih Halaman:")
-option_menu = st.sidebar.selectbox('', ['Home', 'Analisis Data', 'Kumpulan Data'])
+try:
+    with open(css_path) as f:
+        css = f.read()
+    st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
+except FileNotFoundError:
+    st.error(f"File {css_path} tidak ditemukan!")
 
 with st.sidebar:
     with st.container(border=True):
