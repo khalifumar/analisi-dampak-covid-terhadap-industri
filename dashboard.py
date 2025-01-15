@@ -377,11 +377,11 @@ if option_menu == 'Analisis Data':
 
                 fig, ax = plt.subplots()
                 sns.scatterplot(x=tahun, y=penempatan_laki_perkotaan, color="brown", s=100, marker='o')
-                sns.scatterplot(x=tahun, y=penempatan_perempuan_perkotaan, color="yellow", s=100, marker='o')
+                sns.scatterplot(x=tahun, y=penempatan_perempuan_perkotaan, color="red", s=100, marker='o')
 
                 
                 plt.plot(tahun, penempatan_laki_perkotaan, color="brown", linestyle='-')
-                plt.plot(tahun, penempatan_perempuan_perkotaan, color="yellow", linestyle='-')
+                plt.plot(tahun, penempatan_perempuan_perkotaan, color="red", linestyle='-')
                 
                 ax.set_title("Pertumbuhan Penerimaan Tenaga kerja Laki-Laki")
                 ax.set_xlabel("Tahun")
