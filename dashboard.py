@@ -390,10 +390,10 @@ if option_menu == 'Analisis Data':
 
                 st.pyplot(fig)
 
-            st.header("Kesimpulan Analisis")
-            st.write("""
-                Diasumsikan awal pandemi Covid-19 berada diantara tahun 2019 dan 2020. Dari grafik diatas dapat dianalisis bahwa pertumbuhan jumlah penerimaan tenaga kerja sebelum terjadinya pandemi menyatakan kenaikan yang signifikan dari tahun 2018 ke 2020. Namun, jumlah penerimaan tenaga kerja setelah pandemi menurun sangat drastis. Hal tersebut kemungkinan terjadi akibat adanya batasan protokol ataupun kriteria baru yang dibuat oleh masing-masing perusahaan sehingga membatasi jumlah penerimaan tenaga kerja yang mendaftar. 
-            """)
+                st.header("Kesimpulan Analisis")
+                st.write("""
+                    Diasumsikan awal pandemi Covid-19 berada diantara tahun 2019 dan 2020. Dari grafik diatas dapat dianalisis bahwa pertumbuhan jumlah penerimaan tenaga kerja sebelum terjadinya pandemi menyatakan kenaikan yang signifikan dari tahun 2018 ke 2020. Namun, jumlah penerimaan tenaga kerja setelah pandemi menurun sangat drastis. Hal tersebut kemungkinan terjadi akibat adanya batasan protokol ataupun kriteria baru yang dibuat oleh masing-masing perusahaan sehingga membatasi jumlah penerimaan tenaga kerja yang mendaftar. 
+                """)
 
     with col_a6:
         if "Pertumbuhan Penduduk Pernah Bekerja" in options_analisis:
