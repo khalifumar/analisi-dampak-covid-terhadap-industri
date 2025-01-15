@@ -1058,35 +1058,6 @@ elif option_menu == "Home":
                         Diasumsikan awal pandemi Covid-19 berada diantara tahun 2019 dan 2020. Dari grafik diatas dapat dianalisis bahwa pertumbuhan pencari kerja sebelum terjadinya pandemi menyatakan kenaikan yang signifikan. Namun, pertumbuhan pencari kerja setelah pandemi menurun sangat drastis. Hal tersebut kemungkinan terjadi karena adanya batasan protokol yang dibuat oleh pemerintah sehingga membatasi jumlah para pencari kerjanya. 
                     """)
 
-                    elif option_radio_pencari == 'Perempuan':
-                        tahun = ['2018', '2019', '2020', '2021']
-                        pencari_average_perempuan = {
-                            "Pencari_2018" : data_lowongan_2018['Pencari Kerja Terdaftar - Perempuan'].mean(),
-                            "Pencari_2019" : data_lowongan_2019['Pencari Kerja Terdaftar - Perempuan'].mean(),
-                            "Pencari_2020" : data_lowongan_2020['Pencari Kerja Terdaftar - Perempuan'].mean(),
-                            "Pencari_2021" : data_lowongan_2021['Pencari Kerja Terdaftar - Perempuan'].mean()    
-                        }
-
-                        pencari_perempuan_perkotaan = [
-                            pencari_average_perempuan["Pencari_2018"],
-                            pencari_average_perempuan["Pencari_2019"],
-                            pencari_average_perempuan["Pencari_2020"],
-                            pencari_average_perempuan["Pencari_2021"]
-                        ]
-
-                        fig, ax = plt.subplots(figsize=(8,4.3))
-                        sns.scatterplot(x=tahun, y=pencari_perempuan_perkotaan, color="green", s=100, marker='d')
-                        plt.plot(tahun, pencari_perempuan_perkotaan, color="green", linestyle='-')
-
-                        for i, jumlah in enumerate(pencari_perempuan_perkotaan):
-                            ax.text(tahun[i], jumlah + 0.5, f"{jumlah:.2f}", ha='center', fontsize=10, color='black')
-
-                        ax.set_title("Pertumbuhan Pencari Kerja Terdaftar Perempuan")
-                        ax.set_xlabel("Tahun")
-                        ax.set_ylabel("Rata-Rata Pencari Kerja")
-
-                        st.pyplot(fig)
-
                 with tab_h10:
                     option_radio_lowongan = st.radio('Gender :', ['Laki-Laki', 'Perempuan'], key="radio_lowongan")
                     if option_radio_lowongan == 'Laki-Laki':
