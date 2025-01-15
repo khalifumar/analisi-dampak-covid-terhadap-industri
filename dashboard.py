@@ -340,11 +340,11 @@ if option_menu == 'Analisis Data':
                 """)
 
 
-    if "Pertumbuhan Penempatan / Penerimaan Tenaga Kerja" in options_analisis:
-        with st.container(border=True):
-            st.header("Eksplorasi Pertumbuhan Penempatan / Penerimaan Tenaga Kerja Tiap Tahun")
-            col_a7, col_a8 = st.columns(2)
-            with col_a7:
+    col_a5, col_a6 =st.columns(2)
+    with col_a5:
+        if "Pertumbuhan Penempatan / Penerimaan Tenaga Kerja" in options_analisis:
+            with st.container(border=True):
+                st.header("Eksplorasi Pertumbuhan Penempatan / Penerimaan Tenaga Kerja Tiap Tahun")
                 tahun = ['2018', '2019', '2020', '2021']
                 penempatan_average_laki = {
                     "Penempatan_2018" : data_lowongan_2018['Penempatan/Pemenuhan Tenaga Kerja - Laki-Laki'].mean(),
@@ -353,6 +353,14 @@ if option_menu == 'Analisis Data':
                     "Penempatan_2021" : data_lowongan_2021['Penempatan/Pemenuhan Tenaga Kerja - Laki-Laki'].mean()    
                 }
 
+                penempatan_average_perempuan = {
+                    "Penempatan_2018" : data_lowongan_2018['Penempatan/Pemenuhan Tenaga Kerja - Perempuan'].mean(),
+                    "Penempatan_2019" : data_lowongan_2019['Penempatan/Pemenuhan Tenaga Kerja - Perempuan'].mean(),
+                    "Penempatan_2020" : data_lowongan_2020['Penempatan/Pemenuhan Tenaga Kerja - Perempuan'].mean(),
+                    "Penempatan_2021" : data_lowongan_2021['Penempatan/Pemenuhan Tenaga Kerja - Perempuan'].mean()    
+                }
+
+
                 penempatan_laki_perkotaan = [
                     penempatan_average_laki["Penempatan_2018"],
                     penempatan_average_laki["Penempatan_2019"],
@@ -360,13 +368,21 @@ if option_menu == 'Analisis Data':
                     penempatan_average_laki["Penempatan_2021"]
                 ]
 
+                penempatan_perempuan_perkotaan = [
+                    penempatan_average_perempuan["Penempatan_2018"],
+                    penempatan_average_perempuan["Penempatan_2019"],
+                    penempatan_average_perempuan["Penempatan_2020"],
+                    penempatan_average_perempuan["Penempatan_2021"]
+                ]
+
                 fig, ax = plt.subplots()
-                sns.scatterplot(x=tahun, y=penempatan_laki_perkotaan, color="blue", s=100, marker='d')
-                plt.plot(tahun, penempatan_laki_perkotaan, color="blue", linestyle='-')
+                sns.scatterplot(x=tahun, y=penempatan_laki_perkotaan, color="brown", s=100, marker='o')
+                sns.scatterplot(x=tahun, y=penempatan_perempuan_perkotaan, color="yellow", s=100, marker='o')
 
-                for i, jumlah in enumerate(penempatan_laki_perkotaan):
-                        ax.text(tahun[i], jumlah + 0.5, f"{jumlah:.2f}", ha='center', fontsize=10, color='black')
-
+                
+                plt.plot(tahun, penempatan_laki_perkotaan, color="brown", linestyle='-')
+                plt.plot(tahun, penempatan_perempuan_perkotaan, color="yellow", linestyle='-')
+                
                 ax.set_title("Pertumbuhan Penerimaan Tenaga kerja Laki-Laki")
                 ax.set_xlabel("Tahun")
                 ax.set_ylabel("Rata-Rata Lowongan Kerja")
@@ -374,193 +390,164 @@ if option_menu == 'Analisis Data':
 
                 st.pyplot(fig)
 
-                with col_a8:
-                    tahun = ['2018', '2019', '2020', '2021']
-                    penempatan_average_perempuan = {
-                        "Penempatan_2018" : data_lowongan_2018['Penempatan/Pemenuhan Tenaga Kerja - Perempuan'].mean(),
-                        "Penempatan_2019" : data_lowongan_2019['Penempatan/Pemenuhan Tenaga Kerja - Perempuan'].mean(),
-                        "Penempatan_2020" : data_lowongan_2020['Penempatan/Pemenuhan Tenaga Kerja - Perempuan'].mean(),
-                        "Penempatan_2021" : data_lowongan_2021['Penempatan/Pemenuhan Tenaga Kerja - Perempuan'].mean()    
-                    }
-
-                    penempatan_perempuan_perkotaan = [
-                        penempatan_average_perempuan["Penempatan_2018"],
-                        penempatan_average_perempuan["Penempatan_2019"],
-                        penempatan_average_perempuan["Penempatan_2020"],
-                        penempatan_average_perempuan["Penempatan_2021"]
-                    ]
-
-                    fig, ax = plt.subplots()
-                    sns.scatterplot(x=tahun, y=penempatan_perempuan_perkotaan, color="blue", s=100, marker='d')
-                    plt.plot(tahun, penempatan_perempuan_perkotaan, color="blue", linestyle='-')
-
-                    for i, jumlah in enumerate(penempatan_perempuan_perkotaan):
-                            ax.text(tahun[i], jumlah + 0.5, f"{jumlah:.2f}", ha='center', fontsize=10, color='black')
-
-                    ax.set_title("Pertumbuhan Penerimaan Tenaga kerja Perempuan")
-                    ax.set_xlabel("Tahun")
-                    ax.set_ylabel("Rata-Rata Lowongan Kerja")
-                    ax.legend()
-
-                    st.pyplot(fig)
-
             st.header("Kesimpulan Analisis")
             st.write("""
                 Diasumsikan awal pandemi Covid-19 berada diantara tahun 2019 dan 2020. Dari grafik diatas dapat dianalisis bahwa pertumbuhan jumlah penerimaan tenaga kerja sebelum terjadinya pandemi menyatakan kenaikan yang signifikan dari tahun 2018 ke 2020. Namun, jumlah penerimaan tenaga kerja setelah pandemi menurun sangat drastis. Hal tersebut kemungkinan terjadi akibat adanya batasan protokol ataupun kriteria baru yang dibuat oleh masing-masing perusahaan sehingga membatasi jumlah penerimaan tenaga kerja yang mendaftar. 
             """)
+
+    with col_a6:
+        if "Pertumbuhan Penduduk Pernah Bekerja" in options_analisis:
+            with st.container(border=True):
+                st.subheader("Perbandingan Index Kualitas Industri Tiap Tahun")
+                tab_h12, tab_h13, tab_h14, tab_h15 = st.tabs(['2018', '2019', '2020', '2021'])
     
-    if "Pertumbuhan Penduduk Pernah Bekerja" in options_analisis:
-        with st.container(border=True):
-            st.subheader("Perbandingan Index Kualitas Industri Tiap Tahun")
-            tab_h12, tab_h13, tab_h14, tab_h15 = st.tabs(['2018', '2019', '2020', '2021'])
-
-            with tab_h12:
-                
-                data_persiapan_2018 = {
-                    'Provinsi': data_lowongan_2018['Provinsi'],
-                    'Pencari Kerja 2018' : data_lowongan_2018['Pencari Kerja Terdaftar - Laki-Laki'],
-                    'Jumlah Lowongan 2018' : data_lowongan_2018['Lowongan Kerja Terdaftar - Laki-Laki'],
-                    'Penempatan Tenaga Kerja 2018' : data_lowongan_2018['Penempatan/Pemenuhan Tenaga Kerja - Laki-Laki']
-                }
-                df =  pd.DataFrame(data_persiapan_2018)
-                
-                df['Rasio Penyerapan'] = df['Penempatan Tenaga Kerja 2018'] / df['Pencari Kerja 2018']
-                df['Rasio Ketersediaan Lowongan'] = df['Jumlah Lowongan 2018'] / df['Pencari Kerja 2018']
-                df['Efisiensi Penyerapan'] = df['Penempatan Tenaga Kerja 2018'] / df['Jumlah Lowongan 2018']
-
-                # Normalisasi indikator
-                df['Rasio Penyerapan (Normalisasi)'] = (df['Rasio Penyerapan'] - df['Rasio Penyerapan'].min()) / (df['Rasio Penyerapan'].max() - df['Rasio Penyerapan'].min())
-                df['Rasio Ketersediaan Lowongan (Normalisasi)'] = (df['Rasio Ketersediaan Lowongan'] - df['Rasio Ketersediaan Lowongan'].min()) / (df['Rasio Ketersediaan Lowongan'].max() - df['Rasio Ketersediaan Lowongan'].min())
-                df['Efisiensi Penyerapan (Normalisasi)'] = (df['Efisiensi Penyerapan'] - df['Efisiensi Penyerapan'].min()) / (df['Efisiensi Penyerapan'].max() - df['Efisiensi Penyerapan'].min())
-
-                # Kombinasi indikator dengan bobot
-                w1, w2, w3 = 0.5, 0.3, 0.2
-                df['Indeks Kualitas Industri'] = (w1 * df['Rasio Penyerapan (Normalisasi)'] +
-                                                w2 * df['Rasio Ketersediaan Lowongan (Normalisasi)'] +
-                                                w3 * df['Efisiensi Penyerapan (Normalisasi)'])
-
-                fig, ax = plt.subplots(figsize=(4,2))
-                sns.barplot(x='Provinsi', y=df['Indeks Kualitas Industri'], data=df, color='lightblue')
-                for i, jumlah in enumerate(df['Indeks Kualitas Industri']):
-                    ax.text(i, jumlah + 0.01, f"{jumlah:.2f}", ha='center', fontsize=3, color='black')  # Posisi teks sedikit di atas bar
-
-
-                plt.xlabel('Provinsi', fontsize=4)
-                plt.xticks(rotation=45, ha='right', fontsize=4)
-                plt.ylabel('Indeks Kualitas Industri', fontsize=4)
-                plt.yticks(fontsize=4)
-
-                st.pyplot(fig)
-
-            with tab_h13:
-                data_persiapan_2019 = {
-                    'Provinsi': data_lowongan_2019['Provinsi'],
-                    'Pencari Kerja 2019' : data_lowongan_2019['Pencari Kerja Terdaftar - Laki-Laki'],
-                    'Jumlah Lowongan 2019' : data_lowongan_2019['Lowongan Kerja Terdaftar - Laki-Laki'],
-                    'Penempatan Tenaga Kerja 2019' : data_lowongan_2019['Penempatan/Pemenuhan Tenaga Kerja - Laki-Laki']
-                }
-                df_2019 =  pd.DataFrame(data_persiapan_2019)
-                
-                df_2019['Rasio Penyerapan'] = df_2019['Penempatan Tenaga Kerja 2019'] / df_2019['Pencari Kerja 2019']
-                df_2019['Rasio Ketersediaan Lowongan'] = df_2019['Jumlah Lowongan 2019'] / df_2019['Pencari Kerja 2019']
-                df_2019['Efisiensi Penyerapan'] = df_2019['Penempatan Tenaga Kerja 2019'] / df_2019['Jumlah Lowongan 2019']
-
-                df_2019['Rasio Penyerapan (Normalisasi)'] = (df_2019['Rasio Penyerapan'] - df_2019['Rasio Penyerapan'].min()) / (df_2019['Rasio Penyerapan'].max() - df_2019['Rasio Penyerapan'].min())
-                df_2019['Rasio Ketersediaan Lowongan (Normalisasi)'] = (df_2019['Rasio Ketersediaan Lowongan'] - df_2019['Rasio Ketersediaan Lowongan'].min()) / (df_2019['Rasio Ketersediaan Lowongan'].max() - df_2019['Rasio Ketersediaan Lowongan'].min())
-                df_2019['Efisiensi Penyerapan (Normalisasi)'] = (df_2019['Efisiensi Penyerapan'] - df_2019['Efisiensi Penyerapan'].min()) / (df_2019['Efisiensi Penyerapan'].max() - df_2019['Efisiensi Penyerapan'].min())
-
-                w1, w2, w3 = 0.5, 0.3, 0.2
-                df_2019['Indeks Kualitas Industri 2019'] = (w1 * df_2019['Rasio Penyerapan (Normalisasi)'] +
-                                                w2 * df_2019['Rasio Ketersediaan Lowongan (Normalisasi)'] +
-                                                w3 * df_2019['Efisiensi Penyerapan (Normalisasi)'])
-
-                fig, ax = plt.subplots(figsize=(4,2))
-                sns.barplot(x='Provinsi', y=df_2019['Indeks Kualitas Industri 2019'], data=df_2019, color='lightblue')
-                for i, jumlah in enumerate(df_2019['Indeks Kualitas Industri 2019']):
-                    ax.text(i, jumlah + 0.01, f"{jumlah:.2f}", ha='center', fontsize=3, color='black')
-
-
-                plt.xlabel('Provinsi', fontsize=4)
-                plt.xticks(rotation=45, ha='right', fontsize=4)
-                plt.ylabel('Indeks Kualitas Industri', fontsize=4)
-                plt.yticks(fontsize=4)
-
-                st.pyplot(fig)
-
-            with tab_h14:
-                data_persiapan_2020 = {
-                    'Provinsi': data_lowongan_2020['Provinsi'],
-                    'Pencari Kerja 2020' : data_lowongan_2020['Pencari Kerja Terdaftar - Laki-Laki'],
-                    'Jumlah Lowongan 2020' : data_lowongan_2020['Lowongan Kerja Terdaftar - Laki-Laki'],
-                    'Penempatan Tenaga Kerja 2020' : data_lowongan_2020['Penempatan/Pemenuhan Tenaga Kerja - Laki-Laki']
-                }
-                df_2020 =  pd.DataFrame(data_persiapan_2020)
-                
-                df_2020['Rasio Penyerapan'] = np.where(df_2020['Pencari Kerja 2020'] > 0,  df_2020['Penempatan Tenaga Kerja 2020'] / df_2020['Pencari Kerja 2020'], 0)
-                df_2020['Rasio Ketersediaan Lowongan'] = df_2020['Jumlah Lowongan 2020'] / df_2020['Pencari Kerja 2020']
-                df_2020['Efisiensi Penyerapan'] = df_2020['Penempatan Tenaga Kerja 2020'] / df_2020['Jumlah Lowongan 2020']
-
-                df_2020['Rasio Penyerapan (Normalisasi)'] = (df_2020['Rasio Penyerapan'] - df_2020['Rasio Penyerapan'].min()) / (df_2020['Rasio Penyerapan'].max() - df_2020['Rasio Penyerapan'].min())
-                df_2020['Rasio Ketersediaan Lowongan (Normalisasi)'] = (df_2020['Rasio Ketersediaan Lowongan'] - df_2020['Rasio Ketersediaan Lowongan'].min()) / (df_2020['Rasio Ketersediaan Lowongan'].max() - df_2020['Rasio Ketersediaan Lowongan'].min())
-                df_2020['Efisiensi Penyerapan (Normalisasi)'] = (df_2020['Efisiensi Penyerapan'] - df_2020['Efisiensi Penyerapan'].min()) / (df_2020['Efisiensi Penyerapan'].max() - df_2020['Efisiensi Penyerapan'].min())
-
-                w1, w2, w3 = 0.5, 0.3, 0.2
-                df_2020['Indeks Kualitas Industri 2020'] = (w1 * df_2020['Rasio Penyerapan (Normalisasi)'] +
-                                                w2 * df_2020['Rasio Ketersediaan Lowongan (Normalisasi)'] +
-                                                w3 * df_2020['Efisiensi Penyerapan (Normalisasi)'])
-
-                fig, ax = plt.subplots(figsize=(4,2))
-                sns.barplot(x='Provinsi', y=df_2020['Indeks Kualitas Industri 2020'], data=df_2020, color='lightblue')
-                for i, jumlah in enumerate(df_2020['Indeks Kualitas Industri 2020']):
-                    ax.text(i, jumlah + 0.01, f"{jumlah:.2f}", ha='center', fontsize=3, color='black')
-
-
-                plt.xlabel('Provinsi', fontsize=4)
-                plt.xticks(rotation=45, ha='right', fontsize=4)
-                plt.ylabel('Indeks Kualitas Industri', fontsize=4)
-                plt.yticks(fontsize=4)
-
-                st.pyplot(fig)
-
-            with tab_h15:
-                data_persiapan_2021 = {
-                    'Provinsi': data_lowongan_2021['Provinsi'],
-                    'Pencari Kerja 2021' : data_lowongan_2021['Pencari Kerja Terdaftar - Laki-Laki'],
-                    'Jumlah Lowongan 2021' : data_lowongan_2021['Lowongan Kerja Terdaftar - Laki-Laki'],
-                    'Penempatan Tenaga Kerja 2021' : data_lowongan_2021['Penempatan/Pemenuhan Tenaga Kerja - Laki-Laki']
-                }
-                df_2021 =  pd.DataFrame(data_persiapan_2021)
-                
-                df_2021['Rasio Penyerapan'] = df_2021['Penempatan Tenaga Kerja 2021'] / df_2021['Pencari Kerja 2021']
-                df_2021['Rasio Ketersediaan Lowongan'] = df_2021['Jumlah Lowongan 2021'] / df_2021['Pencari Kerja 2021']
-                df_2021['Efisiensi Penyerapan'] = df_2021['Penempatan Tenaga Kerja 2021'] / df_2021['Jumlah Lowongan 2021']
-                
-                df_2021['Rasio Penyerapan (Normalisasi)'] = (df_2021['Rasio Penyerapan'] - df_2021['Rasio Penyerapan'].min()) / (df_2021['Rasio Penyerapan'].max() - df_2021['Rasio Penyerapan'].min())
-                df_2021['Rasio Ketersediaan Lowongan (Normalisasi)'] = (df_2021['Rasio Ketersediaan Lowongan'] - df_2021['Rasio Ketersediaan Lowongan'].min()) / (df_2021['Rasio Ketersediaan Lowongan'].max() - df_2021['Rasio Ketersediaan Lowongan'].min())
-                df_2021['Efisiensi Penyerapan (Normalisasi)'] = (df_2021['Efisiensi Penyerapan'] - df_2021['Efisiensi Penyerapan'].min()) / (df_2021['Efisiensi Penyerapan'].max() - df_2021['Efisiensi Penyerapan'].min())
-                
-                w1, w2, w3 = 0.5, 0.3, 0.2
-                df_2021['Indeks Kualitas Industri 2021'] = (w1 * df_2021['Rasio Penyerapan (Normalisasi)'] +
-                                                w2 * df_2021['Rasio Ketersediaan Lowongan (Normalisasi)'] +
-                                                w3 * df_2021['Efisiensi Penyerapan (Normalisasi)'])
-                
-                fig, ax = plt.subplots(figsize=(4,2))
-                sns.barplot(x='Provinsi', y=df_2021['Indeks Kualitas Industri 2021'], data=df_2021, color='lightblue')
-                for i, jumlah in enumerate(df_2021['Indeks Kualitas Industri 2021']):
-                    ax.text(i, jumlah + 0.01, f"{jumlah:.2f}", ha='center', fontsize=3, color='black')
-                
-                plt.xlabel('Provinsi', fontsize=4)
-                plt.xticks(rotation=45, ha='right', fontsize=4)
-                plt.ylabel('Indeks Kualitas Industri', fontsize=4)
-                plt.yticks(fontsize=4)
-
-                st.pyplot(fig)
-        
-
-            st.header("Kesimpulan Analisis")
-            st.write("""
-                Diasumsikan awal pandemi Covid-19 berada diantara tahun 2019 dan 2020. Dari grafik diatas dapat dianalisis bahwa index kualitas industri sebelum terjadinya pandemi menyatakan penerunan yang cukup drastis terutama di tahun 2019. Namun, pertumbuhan index kualitas industri setelah terjadinya pandemi justru menyatakan peningkatan yang cukup signifikan. Hal tersebut kemungkinan terjadi akibat angka penerimaan tenaga kerja di awal pandemi cukup membludak. Disisi lain, mungkin banyak juga karyawan-karyawan yang terkena PHK dari perusahaannya. 
-            """)
+                with tab_h12:
+                    
+                    data_persiapan_2018 = {
+                        'Provinsi': data_lowongan_2018['Provinsi'],
+                        'Pencari Kerja 2018' : data_lowongan_2018['Pencari Kerja Terdaftar - Laki-Laki'],
+                        'Jumlah Lowongan 2018' : data_lowongan_2018['Lowongan Kerja Terdaftar - Laki-Laki'],
+                        'Penempatan Tenaga Kerja 2018' : data_lowongan_2018['Penempatan/Pemenuhan Tenaga Kerja - Laki-Laki']
+                    }
+                    df =  pd.DataFrame(data_persiapan_2018)
+                    
+                    df['Rasio Penyerapan'] = df['Penempatan Tenaga Kerja 2018'] / df['Pencari Kerja 2018']
+                    df['Rasio Ketersediaan Lowongan'] = df['Jumlah Lowongan 2018'] / df['Pencari Kerja 2018']
+                    df['Efisiensi Penyerapan'] = df['Penempatan Tenaga Kerja 2018'] / df['Jumlah Lowongan 2018']
+    
+                    # Normalisasi indikator
+                    df['Rasio Penyerapan (Normalisasi)'] = (df['Rasio Penyerapan'] - df['Rasio Penyerapan'].min()) / (df['Rasio Penyerapan'].max() - df['Rasio Penyerapan'].min())
+                    df['Rasio Ketersediaan Lowongan (Normalisasi)'] = (df['Rasio Ketersediaan Lowongan'] - df['Rasio Ketersediaan Lowongan'].min()) / (df['Rasio Ketersediaan Lowongan'].max() - df['Rasio Ketersediaan Lowongan'].min())
+                    df['Efisiensi Penyerapan (Normalisasi)'] = (df['Efisiensi Penyerapan'] - df['Efisiensi Penyerapan'].min()) / (df['Efisiensi Penyerapan'].max() - df['Efisiensi Penyerapan'].min())
+    
+                    # Kombinasi indikator dengan bobot
+                    w1, w2, w3 = 0.5, 0.3, 0.2
+                    df['Indeks Kualitas Industri'] = (w1 * df['Rasio Penyerapan (Normalisasi)'] +
+                                                    w2 * df['Rasio Ketersediaan Lowongan (Normalisasi)'] +
+                                                    w3 * df['Efisiensi Penyerapan (Normalisasi)'])
+    
+                    fig, ax = plt.subplots(figsize=(4,2))
+                    sns.barplot(x='Provinsi', y=df['Indeks Kualitas Industri'], data=df, color='lightblue')
+                    for i, jumlah in enumerate(df['Indeks Kualitas Industri']):
+                        ax.text(i, jumlah + 0.01, f"{jumlah:.2f}", ha='center', fontsize=3, color='black')  # Posisi teks sedikit di atas bar
+    
+    
+                    plt.xlabel('Provinsi', fontsize=4)
+                    plt.xticks(rotation=45, ha='right', fontsize=4)
+                    plt.ylabel('Indeks Kualitas Industri', fontsize=4)
+                    plt.yticks(fontsize=4)
+    
+                    st.pyplot(fig)
+    
+                with tab_h13:
+                    data_persiapan_2019 = {
+                        'Provinsi': data_lowongan_2019['Provinsi'],
+                        'Pencari Kerja 2019' : data_lowongan_2019['Pencari Kerja Terdaftar - Laki-Laki'],
+                        'Jumlah Lowongan 2019' : data_lowongan_2019['Lowongan Kerja Terdaftar - Laki-Laki'],
+                        'Penempatan Tenaga Kerja 2019' : data_lowongan_2019['Penempatan/Pemenuhan Tenaga Kerja - Laki-Laki']
+                    }
+                    df_2019 =  pd.DataFrame(data_persiapan_2019)
+                    
+                    df_2019['Rasio Penyerapan'] = df_2019['Penempatan Tenaga Kerja 2019'] / df_2019['Pencari Kerja 2019']
+                    df_2019['Rasio Ketersediaan Lowongan'] = df_2019['Jumlah Lowongan 2019'] / df_2019['Pencari Kerja 2019']
+                    df_2019['Efisiensi Penyerapan'] = df_2019['Penempatan Tenaga Kerja 2019'] / df_2019['Jumlah Lowongan 2019']
+    
+                    df_2019['Rasio Penyerapan (Normalisasi)'] = (df_2019['Rasio Penyerapan'] - df_2019['Rasio Penyerapan'].min()) / (df_2019['Rasio Penyerapan'].max() - df_2019['Rasio Penyerapan'].min())
+                    df_2019['Rasio Ketersediaan Lowongan (Normalisasi)'] = (df_2019['Rasio Ketersediaan Lowongan'] - df_2019['Rasio Ketersediaan Lowongan'].min()) / (df_2019['Rasio Ketersediaan Lowongan'].max() - df_2019['Rasio Ketersediaan Lowongan'].min())
+                    df_2019['Efisiensi Penyerapan (Normalisasi)'] = (df_2019['Efisiensi Penyerapan'] - df_2019['Efisiensi Penyerapan'].min()) / (df_2019['Efisiensi Penyerapan'].max() - df_2019['Efisiensi Penyerapan'].min())
+    
+                    w1, w2, w3 = 0.5, 0.3, 0.2
+                    df_2019['Indeks Kualitas Industri 2019'] = (w1 * df_2019['Rasio Penyerapan (Normalisasi)'] +
+                                                    w2 * df_2019['Rasio Ketersediaan Lowongan (Normalisasi)'] +
+                                                    w3 * df_2019['Efisiensi Penyerapan (Normalisasi)'])
+    
+                    fig, ax = plt.subplots(figsize=(4,2))
+                    sns.barplot(x='Provinsi', y=df_2019['Indeks Kualitas Industri 2019'], data=df_2019, color='lightblue')
+                    for i, jumlah in enumerate(df_2019['Indeks Kualitas Industri 2019']):
+                        ax.text(i, jumlah + 0.01, f"{jumlah:.2f}", ha='center', fontsize=3, color='black')
+    
+    
+                    plt.xlabel('Provinsi', fontsize=4)
+                    plt.xticks(rotation=45, ha='right', fontsize=4)
+                    plt.ylabel('Indeks Kualitas Industri', fontsize=4)
+                    plt.yticks(fontsize=4)
+    
+                    st.pyplot(fig)
+    
+                with tab_h14:
+                    data_persiapan_2020 = {
+                        'Provinsi': data_lowongan_2020['Provinsi'],
+                        'Pencari Kerja 2020' : data_lowongan_2020['Pencari Kerja Terdaftar - Laki-Laki'],
+                        'Jumlah Lowongan 2020' : data_lowongan_2020['Lowongan Kerja Terdaftar - Laki-Laki'],
+                        'Penempatan Tenaga Kerja 2020' : data_lowongan_2020['Penempatan/Pemenuhan Tenaga Kerja - Laki-Laki']
+                    }
+                    df_2020 =  pd.DataFrame(data_persiapan_2020)
+                    
+                    df_2020['Rasio Penyerapan'] = np.where(df_2020['Pencari Kerja 2020'] > 0,  df_2020['Penempatan Tenaga Kerja 2020'] / df_2020['Pencari Kerja 2020'], 0)
+                    df_2020['Rasio Ketersediaan Lowongan'] = df_2020['Jumlah Lowongan 2020'] / df_2020['Pencari Kerja 2020']
+                    df_2020['Efisiensi Penyerapan'] = df_2020['Penempatan Tenaga Kerja 2020'] / df_2020['Jumlah Lowongan 2020']
+    
+                    df_2020['Rasio Penyerapan (Normalisasi)'] = (df_2020['Rasio Penyerapan'] - df_2020['Rasio Penyerapan'].min()) / (df_2020['Rasio Penyerapan'].max() - df_2020['Rasio Penyerapan'].min())
+                    df_2020['Rasio Ketersediaan Lowongan (Normalisasi)'] = (df_2020['Rasio Ketersediaan Lowongan'] - df_2020['Rasio Ketersediaan Lowongan'].min()) / (df_2020['Rasio Ketersediaan Lowongan'].max() - df_2020['Rasio Ketersediaan Lowongan'].min())
+                    df_2020['Efisiensi Penyerapan (Normalisasi)'] = (df_2020['Efisiensi Penyerapan'] - df_2020['Efisiensi Penyerapan'].min()) / (df_2020['Efisiensi Penyerapan'].max() - df_2020['Efisiensi Penyerapan'].min())
+    
+                    w1, w2, w3 = 0.5, 0.3, 0.2
+                    df_2020['Indeks Kualitas Industri 2020'] = (w1 * df_2020['Rasio Penyerapan (Normalisasi)'] +
+                                                    w2 * df_2020['Rasio Ketersediaan Lowongan (Normalisasi)'] +
+                                                    w3 * df_2020['Efisiensi Penyerapan (Normalisasi)'])
+    
+                    fig, ax = plt.subplots(figsize=(4,2))
+                    sns.barplot(x='Provinsi', y=df_2020['Indeks Kualitas Industri 2020'], data=df_2020, color='lightblue')
+                    for i, jumlah in enumerate(df_2020['Indeks Kualitas Industri 2020']):
+                        ax.text(i, jumlah + 0.01, f"{jumlah:.2f}", ha='center', fontsize=3, color='black')
+    
+    
+                    plt.xlabel('Provinsi', fontsize=4)
+                    plt.xticks(rotation=45, ha='right', fontsize=4)
+                    plt.ylabel('Indeks Kualitas Industri', fontsize=4)
+                    plt.yticks(fontsize=4)
+    
+                    st.pyplot(fig)
+    
+                with tab_h15:
+                    data_persiapan_2021 = {
+                        'Provinsi': data_lowongan_2021['Provinsi'],
+                        'Pencari Kerja 2021' : data_lowongan_2021['Pencari Kerja Terdaftar - Laki-Laki'],
+                        'Jumlah Lowongan 2021' : data_lowongan_2021['Lowongan Kerja Terdaftar - Laki-Laki'],
+                        'Penempatan Tenaga Kerja 2021' : data_lowongan_2021['Penempatan/Pemenuhan Tenaga Kerja - Laki-Laki']
+                    }
+                    df_2021 =  pd.DataFrame(data_persiapan_2021)
+                    
+                    df_2021['Rasio Penyerapan'] = df_2021['Penempatan Tenaga Kerja 2021'] / df_2021['Pencari Kerja 2021']
+                    df_2021['Rasio Ketersediaan Lowongan'] = df_2021['Jumlah Lowongan 2021'] / df_2021['Pencari Kerja 2021']
+                    df_2021['Efisiensi Penyerapan'] = df_2021['Penempatan Tenaga Kerja 2021'] / df_2021['Jumlah Lowongan 2021']
+                    
+                    df_2021['Rasio Penyerapan (Normalisasi)'] = (df_2021['Rasio Penyerapan'] - df_2021['Rasio Penyerapan'].min()) / (df_2021['Rasio Penyerapan'].max() - df_2021['Rasio Penyerapan'].min())
+                    df_2021['Rasio Ketersediaan Lowongan (Normalisasi)'] = (df_2021['Rasio Ketersediaan Lowongan'] - df_2021['Rasio Ketersediaan Lowongan'].min()) / (df_2021['Rasio Ketersediaan Lowongan'].max() - df_2021['Rasio Ketersediaan Lowongan'].min())
+                    df_2021['Efisiensi Penyerapan (Normalisasi)'] = (df_2021['Efisiensi Penyerapan'] - df_2021['Efisiensi Penyerapan'].min()) / (df_2021['Efisiensi Penyerapan'].max() - df_2021['Efisiensi Penyerapan'].min())
+                    
+                    w1, w2, w3 = 0.5, 0.3, 0.2
+                    df_2021['Indeks Kualitas Industri 2021'] = (w1 * df_2021['Rasio Penyerapan (Normalisasi)'] +
+                                                    w2 * df_2021['Rasio Ketersediaan Lowongan (Normalisasi)'] +
+                                                    w3 * df_2021['Efisiensi Penyerapan (Normalisasi)'])
+                    
+                    fig, ax = plt.subplots(figsize=(4,2))
+                    sns.barplot(x='Provinsi', y=df_2021['Indeks Kualitas Industri 2021'], data=df_2021, color='lightblue')
+                    for i, jumlah in enumerate(df_2021['Indeks Kualitas Industri 2021']):
+                        ax.text(i, jumlah + 0.01, f"{jumlah:.2f}", ha='center', fontsize=3, color='black')
+                    
+                    plt.xlabel('Provinsi', fontsize=4)
+                    plt.xticks(rotation=45, ha='right', fontsize=4)
+                    plt.ylabel('Indeks Kualitas Industri', fontsize=4)
+                    plt.yticks(fontsize=4)
+    
+                    st.pyplot(fig)
+            
+    
+                st.header("Kesimpulan Analisis")
+                st.write("""
+                    Diasumsikan awal pandemi Covid-19 berada diantara tahun 2019 dan 2020. Dari grafik diatas dapat dianalisis bahwa index kualitas industri sebelum terjadinya pandemi menyatakan penerunan yang cukup drastis terutama di tahun 2019. Namun, pertumbuhan index kualitas industri setelah terjadinya pandemi justru menyatakan peningkatan yang cukup signifikan. Hal tersebut kemungkinan terjadi akibat angka penerimaan tenaga kerja di awal pandemi cukup membludak. Disisi lain, mungkin banyak juga karyawan-karyawan yang terkena PHK dari perusahaannya. 
+                """)
 
 
 
