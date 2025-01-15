@@ -246,7 +246,7 @@ if option_menu == 'Analisis Data':
                     "Pencari_2021": data_lowongan_2021['Pencari Kerja Terdaftar - Laki-Laki'].mean()
                 }
 
-                                pencari_average_perempuan = {
+                pencari_average_perempuan = {
                     "Pencari_2018" : data_lowongan_2018['Pencari Kerja Terdaftar - Perempuan'].mean(),
                     "Pencari_2019" : data_lowongan_2019['Pencari Kerja Terdaftar - Perempuan'].mean(),
                     "Pencari_2020" : data_lowongan_2020['Pencari Kerja Terdaftar - Perempuan'].mean(),
