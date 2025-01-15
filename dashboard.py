@@ -1009,7 +1009,6 @@ elif option_menu == "Home":
                 
                 tab_h9, tab_h10, tab_h11 = st.tabs(['Pencari Kerja', 'Jumlah Lowongan', 'Jumlah Penerimaan'])
                 with tab_h9:
-                    st.header("Analisis Jumlah Pertumbuhan Pencari Kerja Tiap Tahun")
                     tahun = ['2018', '2019', '2020', '2021']
                     pencari_average_laki = {
                         "Pencari_2018": data_lowongan_2018['Pencari Kerja Terdaftar - Laki-Laki'].mean(),
@@ -1059,125 +1058,108 @@ elif option_menu == "Home":
                     """)
 
                 with tab_h10:
-                    option_radio_lowongan = st.radio('Gender :', ['Laki-Laki', 'Perempuan'], key="radio_lowongan")
-                    if option_radio_lowongan == 'Laki-Laki':
-                        tahun = ['2018', '2019', '2020', '2021']
-                        lowongan_average_laki = {
-                            "Lowongan_2018" : data_lowongan_2018['Lowongan Kerja Terdaftar - Laki-Laki'].mean(),
-                            "Lowongan_2019" : data_lowongan_2019['Lowongan Kerja Terdaftar - Laki-Laki'].mean(),
-                            "Lowongan_2020" : data_lowongan_2020['Lowongan Kerja Terdaftar - Laki-Laki'].mean(),
-                            "Lowongan_2021" : data_lowongan_2021['Lowongan Kerja Terdaftar - Laki-Laki'].mean()    
-                        }
-
-                        lowongan_laki_perkotaan = [
-                            lowongan_average_laki["Lowongan_2018"],
-                            lowongan_average_laki["Lowongan_2019"],
-                            lowongan_average_laki["Lowongan_2020"],
-                            lowongan_average_laki["Lowongan_2021"]
-                        ]
-
-                        fig, ax = plt.subplots(figsize=(8,4.3))
-                        sns.scatterplot(x=tahun, y=lowongan_laki_perkotaan, color="red", s=100, marker='d')
-                        plt.plot(tahun, lowongan_laki_perkotaan, color="red", linestyle='-')
-
-                        for i, jumlah in enumerate(lowongan_laki_perkotaan):
-                                ax.text(tahun[i], jumlah + 0.5, f"{jumlah:.2f}", ha='center', fontsize=10, color='black')
-
-                        ax.set_title("Pertumbuhan Lowongan Kerja Terdaftar (Laki-Laki)")
-                        ax.set_xlabel("Tahun")
-                        ax.set_ylabel("Rata-Rata Lowongan Kerja")
-
-                        st.pyplot(fig)
-
-                    elif option_radio_lowongan == 'Perempuan':
-                        tahun = ['2018', '2019', '2020', '2021']
-                        lowongan_average_perempuan = {
-                            "Lowongan_2018" : data_lowongan_2018['Lowongan Kerja Terdaftar - Perempuan'].mean(),
-                            "Lowongan_2019" : data_lowongan_2019['Lowongan Kerja Terdaftar - Perempuan'].mean(),
-                            "Lowongan_2020" : data_lowongan_2020['Lowongan Kerja Terdaftar - Perempuan'].mean(),
-                            "Lowongan_2021" : data_lowongan_2021['Lowongan Kerja Terdaftar - Perempuan'].mean()    
-                        }
-
-                        lowongan_perempuan_perkotaan = [
-                            lowongan_average_perempuan["Lowongan_2018"],
-                            lowongan_average_perempuan["Lowongan_2019"],
-                            lowongan_average_perempuan["Lowongan_2020"],
-                            lowongan_average_perempuan["Lowongan_2021"]
-                        ]
-
-                        fig, ax = plt.subplots(figsize=(8,4.3))
-                        sns.scatterplot(x=tahun, y=lowongan_perempuan_perkotaan, color="red", s=100, marker='d', label='Data')
-                        plt.plot(tahun, lowongan_perempuan_perkotaan, color="red", linestyle='-', label='Trend Line')
-
-                        for i, jumlah in enumerate(lowongan_perempuan_perkotaan):
-                                ax.text(tahun[i], jumlah + 0.5, f"{jumlah:.2f}", ha='center', fontsize=10, color='black')
-
-                        ax.set_title("Pertumbuhan Lowongan Kerja Terdaftar Perempuan")
-                        ax.set_xlabel("Tahun")
-                        ax.set_ylabel("Rata-Rata Lowongan Kerja")
-
-                        st.pyplot(fig)
+                    st.header("Eksplorasi Pertumbuhan Lowongan Pekerjaan Tiap Tahun")
+                    tahun = ['2018', '2019', '2020', '2021']
+                    lowongan_average_laki = {
+                        "Lowongan_2018" : data_lowongan_2018['Lowongan Kerja Terdaftar - Laki-Laki'].mean(),
+                        "Lowongan_2019" : data_lowongan_2019['Lowongan Kerja Terdaftar - Laki-Laki'].mean(),
+                        "Lowongan_2020" : data_lowongan_2020['Lowongan Kerja Terdaftar - Laki-Laki'].mean(),
+                        "Lowongan_2021" : data_lowongan_2021['Lowongan Kerja Terdaftar - Laki-Laki'].mean()    
+                    }
+    
+                    lowongan_average_perempuan = {
+                        "Lowongan_2018" : data_lowongan_2018['Lowongan Kerja Terdaftar - Perempuan'].mean(),
+                        "Lowongan_2019" : data_lowongan_2019['Lowongan Kerja Terdaftar - Perempuan'].mean(),
+                        "Lowongan_2020" : data_lowongan_2020['Lowongan Kerja Terdaftar - Perempuan'].mean(),
+                        "Lowongan_2021" : data_lowongan_2021['Lowongan Kerja Terdaftar - Perempuan'].mean()    
+                    }
+    
+    
+                    lowongan_laki_perkotaan = [
+                        lowongan_average_laki["Lowongan_2018"],
+                        lowongan_average_laki["Lowongan_2019"],
+                        lowongan_average_laki["Lowongan_2020"],
+                        lowongan_average_laki["Lowongan_2021"]
+                    ]
+    
+                    lowongan_perempuan_perkotaan = [
+                        lowongan_average_perempuan["Lowongan_2018"],
+                        lowongan_average_perempuan["Lowongan_2019"],
+                        lowongan_average_perempuan["Lowongan_2020"],
+                        lowongan_average_perempuan["Lowongan_2021"]
+                    ]
+    
+                    fig, ax = plt.subplots()
+                    sns.scatterplot(x=tahun, y=lowongan_laki_perkotaan, color="red", s=100, marker='o', label='Laki-Laki')
+                    sns.scatterplot(x=tahun, y=lowongan_perempuan_perkotaan, color="orange", s=100, marker='o', label='Perempuan')
+                    
+                    plt.plot(tahun, lowongan_laki_perkotaan, color="red", linestyle='-')
+                    plt.plot(tahun, lowongan_perempuan_perkotaan, color="orange", linestyle='-')
+    
+                    ax.set_title("Perbandingan Pertumbuhan Lowongan Kerja Terdaftar")
+                    ax.set_xlabel("Tahun")
+                    ax.set_ylabel("Rata-Rata Lowongan Kerja")
+                    ax.legend()
+    
+                    st.pyplot(fig)
+        
+                    st.header("Kesimpulan Analisis")
+                    st.write("""
+                        Diasumsikan awal pandemi Covid-19 berada diantara tahun 2019 dan 2020. Dari grafik diatas dapat dianalisis bahwa pertumbuhan jumlah lowongan kerja sebelum terjadinya pandemi menyatakan kenaikan yang signifikan dari tahun 2018 ke 2020. Namun, pertumbuuhan jumlah lowongan kerja setelah pandemi menurun sangat drastis. Hal tersebut kemungkinan terjadi akibat adanya batasan protokol yang dibuat oleh pemerintah pusat ataupun daerah sehingga membatasi jumlah perekrutan pada perusahaan-perusahaan. 
+                    """)
 
                 with tab_h11:
-                    option_radio_penerimaan = st.radio('Gender :', ['Laki-Laki', 'Perempuan'], key="radio_penerimaan")
-                    if option_radio_penerimaan == 'Laki-Laki':
-                        tahun = ['2018', '2019', '2020', '2021']
-                        penempatan_average_laki = {
-                            "Penempatan_2018" : data_lowongan_2018['Penempatan/Pemenuhan Tenaga Kerja - Laki-Laki'].mean(),
-                            "Penempatan_2019" : data_lowongan_2019['Penempatan/Pemenuhan Tenaga Kerja - Laki-Laki'].mean(),
-                            "Penempatan_2020" : data_lowongan_2020['Penempatan/Pemenuhan Tenaga Kerja - Laki-Laki'].mean(),
-                            "Penempatan_2021" : data_lowongan_2021['Penempatan/Pemenuhan Tenaga Kerja - Laki-Laki'].mean()    
-                        }
+                    st.header("Eksplorasi Pertumbuhan Penempatan / Penerimaan Tenaga Kerja Tiap Tahun")
+                tahun = ['2018', '2019', '2020', '2021']
+                penempatan_average_laki = {
+                    "Penempatan_2018" : data_lowongan_2018['Penempatan/Pemenuhan Tenaga Kerja - Laki-Laki'].mean(),
+                    "Penempatan_2019" : data_lowongan_2019['Penempatan/Pemenuhan Tenaga Kerja - Laki-Laki'].mean(),
+                    "Penempatan_2020" : data_lowongan_2020['Penempatan/Pemenuhan Tenaga Kerja - Laki-Laki'].mean(),
+                    "Penempatan_2021" : data_lowongan_2021['Penempatan/Pemenuhan Tenaga Kerja - Laki-Laki'].mean()    
+                }
 
-                        penempatan_laki_perkotaan = [
-                            penempatan_average_laki["Penempatan_2018"],
-                            penempatan_average_laki["Penempatan_2019"],
-                            penempatan_average_laki["Penempatan_2020"],
-                            penempatan_average_laki["Penempatan_2021"]
-                        ]
+                penempatan_average_perempuan = {
+                    "Penempatan_2018" : data_lowongan_2018['Penempatan/Pemenuhan Tenaga Kerja - Perempuan'].mean(),
+                    "Penempatan_2019" : data_lowongan_2019['Penempatan/Pemenuhan Tenaga Kerja - Perempuan'].mean(),
+                    "Penempatan_2020" : data_lowongan_2020['Penempatan/Pemenuhan Tenaga Kerja - Perempuan'].mean(),
+                    "Penempatan_2021" : data_lowongan_2021['Penempatan/Pemenuhan Tenaga Kerja - Perempuan'].mean()    
+                }
 
-                        fig, ax = plt.subplots(figsize=(8,4.3))
-                        sns.scatterplot(x=tahun, y=penempatan_laki_perkotaan, color="blue", s=100, marker='d')
-                        plt.plot(tahun, penempatan_laki_perkotaan, color="blue", linestyle='-')
 
-                        for i, jumlah in enumerate(penempatan_laki_perkotaan):
-                            ax.text(tahun[i], jumlah + 0.5, f"{jumlah:.2f}", ha='center', fontsize=10, color='black')
+                penempatan_laki_perkotaan = [
+                    penempatan_average_laki["Penempatan_2018"],
+                    penempatan_average_laki["Penempatan_2019"],
+                    penempatan_average_laki["Penempatan_2020"],
+                    penempatan_average_laki["Penempatan_2021"]
+                ]
 
-                        ax.set_title("Pertumbuhan Penerimaan Tenaga kerja Laki-Laki")
-                        ax.set_xlabel("Tahun")
-                        ax.set_ylabel("Rata-Rata Lowongan Kerja")
+                penempatan_perempuan_perkotaan = [
+                    penempatan_average_perempuan["Penempatan_2018"],
+                    penempatan_average_perempuan["Penempatan_2019"],
+                    penempatan_average_perempuan["Penempatan_2020"],
+                    penempatan_average_perempuan["Penempatan_2021"]
+                ]
 
-                        st.pyplot(fig)
-                    
-                    elif option_radio_penerimaan == 'Perempuan':
-                        tahun = ['2018', '2019', '2020', '2021']
-                        penempatan_average_perempuan = {
-                            "Penempatan_2018" : data_lowongan_2018['Penempatan/Pemenuhan Tenaga Kerja - Perempuan'].mean(),
-                            "Penempatan_2019" : data_lowongan_2019['Penempatan/Pemenuhan Tenaga Kerja - Perempuan'].mean(),
-                            "Penempatan_2020" : data_lowongan_2020['Penempatan/Pemenuhan Tenaga Kerja - Perempuan'].mean(),
-                            "Penempatan_2021" : data_lowongan_2021['Penempatan/Pemenuhan Tenaga Kerja - Perempuan'].mean()    
-                        }
+                fig, ax = plt.subplots()
+                sns.scatterplot(x=tahun, y=penempatan_laki_perkotaan, color="brown", s=100, marker='o')
+                sns.scatterplot(x=tahun, y=penempatan_perempuan_perkotaan, color="red", s=100, marker='o')
 
-                        penempatan_perempuan_perkotaan = [
-                            penempatan_average_perempuan["Penempatan_2018"],
-                            penempatan_average_perempuan["Penempatan_2019"],
-                            penempatan_average_perempuan["Penempatan_2020"],
-                            penempatan_average_perempuan["Penempatan_2021"]
-                        ]
+                
+                plt.plot(tahun, penempatan_laki_perkotaan, color="brown", linestyle='-')
+                plt.plot(tahun, penempatan_perempuan_perkotaan, color="red", linestyle='-')
+                
+                ax.set_title("Pertumbuhan Penerimaan Tenaga kerja Laki-Laki")
+                ax.set_xlabel("Tahun")
+                ax.set_ylabel("Rata-Rata Lowongan Kerja")
+                ax.legend()
 
-                        fig, ax = plt.subplots(figsize=(8,4.3))
-                        sns.scatterplot(x=tahun, y=penempatan_perempuan_perkotaan, color="blue", s=100, marker='d')
-                        plt.plot(tahun, penempatan_perempuan_perkotaan, color="blue", linestyle='-')
+                st.pyplot(fig)
 
-                        for i, jumlah in enumerate(penempatan_perempuan_perkotaan):
-                                ax.text(tahun[i], jumlah + 0.5, f"{jumlah:.2f}", ha='center', fontsize=10, color='black')
+                st.header("Kesimpulan Analisis")
+                st.write("""
+                    Diasumsikan awal pandemi Covid-19 berada diantara tahun 2019 dan 2020. Dari grafik diatas dapat dianalisis bahwa pertumbuhan jumlah penerimaan tenaga kerja sebelum terjadinya pandemi menyatakan kenaikan yang signifikan dari tahun 2018 ke 2020. Namun, jumlah penerimaan tenaga kerja setelah pandemi menurun sangat drastis. Hal tersebut kemungkinan terjadi akibat adanya batasan protokol ataupun kriteria baru yang dibuat oleh masing-masing perusahaan sehingga membatasi jumlah penerimaan tenaga kerja yang mendaftar. 
+                """)
 
-                        ax.set_title("Pertumbuhan Penerimaan Tenaga kerja Perempuan")
-                        ax.set_xlabel("Tahun")
-                        ax.set_ylabel("Rata-Rata Lowongan Kerja")
-
-                        st.pyplot(fig)
-                    
 
     with st.container(border=True):
         st.subheader("Perbandingan Index Kualitas Industri Tiap Tahun")
