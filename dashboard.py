@@ -321,7 +321,7 @@ if option_menu == 'Analisis Data':
                         lowongan_average_laki["Lowongan_2021"]
                     ]
 
-                     lowongan_perempuan_perkotaan = [
+                    lowongan_perempuan_perkotaan = [
                         lowongan_average_perempuan["Lowongan_2018"],
                         lowongan_average_perempuan["Lowongan_2019"],
                         lowongan_average_perempuan["Lowongan_2020"],
