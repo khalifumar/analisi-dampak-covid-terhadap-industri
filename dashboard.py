@@ -272,7 +272,7 @@ if option_menu == 'Analisis Data':
                 sns.scatterplot(x=tahun, y=pencari_perempuan_perkotaan, color="blue", s=100, marker='o', label='Perempuan')
                 
                 plt.plot(tahun, pencari_laki_perkotaan, color="green", linestyle='-')
-                plt.plot(tahun, pencari_perempuan_perkotaan, color="green", linestyle='-')
+                plt.plot(tahun, pencari_perempuan_perkotaan, color="blue", linestyle='-')
                    
                 ax.set_title("Perbandingan Pertumbuhan Pencari Kerja Terdaftar")
                 ax.set_xlabel("Tahun")
@@ -322,10 +322,10 @@ if option_menu == 'Analisis Data':
 
                 fig, ax = plt.subplots()
                 sns.scatterplot(x=tahun, y=lowongan_laki_perkotaan, color="red", s=100, marker='o', label='Laki-Laki')
-                sns.scatterplot(x=tahun, y=lowongan_perempuan_perkotaan, color="red", s=100, marker='o', label='Perempuan')
+                sns.scatterplot(x=tahun, y=lowongan_perempuan_perkotaan, color="orange", s=100, marker='o', label='Perempuan')
                 
                 plt.plot(tahun, lowongan_laki_perkotaan, color="red", linestyle='-')
-                plt.plot(tahun, lowongan_perempuan_perkotaan, color="red", linestyle='-')
+                plt.plot(tahun, lowongan_perempuan_perkotaan, color="orange", linestyle='-')
 
                 ax.set_title("Perbandingan Pertumbuhan Lowongan Kerja Terdaftar")
                 ax.set_xlabel("Tahun")
