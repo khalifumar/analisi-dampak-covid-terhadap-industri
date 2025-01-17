@@ -271,7 +271,7 @@ if option_menu == 'Analisis Data':
                 sns.scatterplot(x=tahun, y=pencari_laki_perkotaan, color="green", s=100, marker='o', label='Laki-Laki')
                 sns.scatterplot(x=tahun, y=pencari_perempuan_perkotaan, color="blue", s=100, marker='o', label='Perempuan')
 
-                for i, jumlah in enumerate(pencari_laki_perkotaan):
+                for i, jumlah in enumerate(pencari_perempuan_perkotaan):
                     ax.text(tahun[i], jumlah + 0.5, f"{jumlah:.2f}", ha='center', fontsize=10, color='black')
 
    
