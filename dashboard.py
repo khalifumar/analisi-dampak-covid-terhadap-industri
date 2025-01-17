@@ -277,7 +277,7 @@ if option_menu == 'Analisis Data':
                 for i, jumlah in enumerate(pencari_laki_perkotaan):
                     ax.text(tahun[i], jumlah + 0.5, f"{jumlah:.2f}", ha='center', fontsize=10, color='black')
 
-                for i, jumlah in enumerate(pencari_Perempuan_Perkotaan):
+                for i, jumlah in enumerate(pencari_perempuan_Perkotaan):
                     ax.text(tahun[i], jumlah + 0.5, f"{jumlah:.2f}", ha='center', fontsize=10, color='black')
 
                    
