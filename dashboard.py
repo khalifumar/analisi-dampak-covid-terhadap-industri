@@ -274,7 +274,7 @@ if option_menu == 'Analisis Data':
                 plt.plot(tahun, pencari_laki_perkotaan, color="green", linestyle='-')
                 plt.plot(tahun, pencari_perempuan_perkotaan, color="blue", linestyle='-')
 
-                for i, jumlah in enumerate(pencari_laki_laki):
+                for i, jumlah in enumerate(pencari_laki_perkotaan):
                     ax.text(tahun[i], jumlah + 0.5, f"{jumlah:.2f}", ha='center', fontsize=10, color='black')
 
                 for i, jumlah in enumerate(rata_rata_Perempuan_Perkotaan):
