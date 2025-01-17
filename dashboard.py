@@ -270,9 +270,6 @@ if option_menu == 'Analisis Data':
                 fig, ax = plt.subplots()
                 sns.scatterplot(x=tahun, y=pencari_laki_perkotaan, color="green", s=100, marker='o', label='Laki-Laki')
                 sns.scatterplot(x=tahun, y=pencari_perempuan_perkotaan, color="blue", s=100, marker='o', label='Perempuan')
-                
-                plt.plot(tahun, pencari_laki_perkotaan, color="green", linestyle='-')
-                plt.plot(tahun, pencari_perempuan_perkotaan, color="blue", linestyle='-')
 
                 for i, jumlah in enumerate(pencari_laki_perkotaan):
                     ax.text(tahun[i], jumlah + 0.5, f"{jumlah:.2f}", ha='center', fontsize=10, color='black')
@@ -280,6 +277,9 @@ if option_menu == 'Analisis Data':
                 for i, jumlah in enumerate(pencari_perempuan_perkotaan):
                     ax.text(tahun[i], jumlah + 0.5, f"{jumlah:.2f}", ha='center', fontsize=10, color='black')
 
+                
+                plt.plot(tahun, pencari_laki_perkotaan, color="green", linestyle='-')
+                plt.plot(tahun, pencari_perempuan_perkotaan, color="blue", linestyle='-')
                    
                 ax.set_title("Perbandingan Pertumbuhan Pencari Kerja Terdaftar")
                 ax.set_xlabel("Tahun")
