@@ -323,10 +323,6 @@ if option_menu == 'Analisis Data':
                 fig, ax = plt.subplots()
                 sns.scatterplot(x=tahun, y=lowongan_laki_perkotaan, color="red", s=100, marker='o', label='Laki-Laki')
                 sns.scatterplot(x=tahun, y=lowongan_perempuan_perkotaan, color="orange", s=100, marker='o', label='Perempuan')
-
-                for i, jumlah in enumerate(lowongan_perempuan_perkotaan):
-                    ax.text(tahun[i], jumlah + 0.5, f"{jumlah:.2f}", ha='center', fontsize=10, color='black')
-
                 
                 plt.plot(tahun, lowongan_laki_perkotaan, color="red", linestyle='-')
                 plt.plot(tahun, lowongan_perempuan_perkotaan, color="orange", linestyle='-')
@@ -383,9 +379,6 @@ if option_menu == 'Analisis Data':
                 sns.scatterplot(x=tahun, y=penempatan_perempuan_perkotaan, color="brown", s=100, marker='o')
                 sns.scatterplot(x=tahun, y=penempatan_perempuan_perkotaan, color="red", s=100, marker='o')
 
-                for i, jumlah in enumerate(penempatan_perempuan_perkotaan):
-                    ax.text(tahun[i], jumlah + 0.5, f"{jumlah:.2f}", ha='center', fontsize=10, color='black')
-                
                 plt.plot(tahun, penempatan_laki_perkotaan, color="brown", linestyle='-')
                 plt.plot(tahun, penempatan_perempuan_perkotaan, color="red", linestyle='-')
                 
