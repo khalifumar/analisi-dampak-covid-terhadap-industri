@@ -143,7 +143,7 @@ if option_menu == 'Analisis Data':
                         "Rata-rata_2020" : data_gender_pertahun_perkotaan["2020_laki-laki"].mean(),
                         "Rata-rata_2021" : data_gender_pertahun_perkotaan["2021_laki-laki"].mean()
                     }
-                    rata_rata_laki_Perkotaan = [
+                    rata_rata_laki_perkotaan = [
                         laki_perkotaan_average["Rata-rata_2018"],
                         laki_perkotaan_average["Rata-rata_2019"],
                         laki_perkotaan_average["Rata-rata_2020"],
