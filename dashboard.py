@@ -138,6 +138,20 @@ if option_menu == 'Analisis Data':
                     ]
 
 
+                    laki_perkotaan_average = {
+                        "Rata-rata_2018" : data_gender_pertahun_perkotaan["2018_laki-laki"].mean(),
+                        "Rata-rata_2019" : data_gender_pertahun_perkotaan["2019_laki-laki"].mean(),
+                        "Rata-rata_2020" : data_gender_pertahun_perkotaan["2020_laki-laki"].mean(),
+                        "Rata-rata_2021" : data_gender_pertahun_perkotaan["2021_laki-laki"].mean()
+                    }
+                    rata_rata_laki_Perkotaan = [
+                        laki_perkotaan_average["Rata-rata_2018"],
+                        laki_perkotaan_average["Rata-rata_2019"],
+                        laki_perkotaan_average["Rata-rata_2020"],
+                        laki_perkotaan_average["Rata-rata_2021"]
+                    ]
+
+
                     fig, ax =plt.subplots(1, 2, figsize=(14, 6), sharey=True)
                     # for i, jumlah in enumerate(rata_rata_perempuan_perkotaan):
                     #     ax.text(tahun[i], jumlah + 0.2, f"{jumlah:.2f}", ha='center', fontsize=10, color='black')
