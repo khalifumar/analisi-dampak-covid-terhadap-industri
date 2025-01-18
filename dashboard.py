@@ -93,10 +93,10 @@ if option_menu == 'Analisis Data':
                         "Rata-rata_2021" : data_gender_pertahun_perkotaan["2021_laki-laki"].mean()
                     }
                     rata_rata_laki_Perkotaan = [
-                        perkotaan_average["Rata-rata_2018"],
-                        perkotaan_average["Rata-rata_2019"],
-                        perkotaan_average["Rata-rata_2020"],
-                        perkotaan_average["Rata-rata_2021"]
+                        laki_perkotaan_average["Rata-rata_2018"],
+                        laki_perkotaan_average["Rata-rata_2019"],
+                        laki_perkotaan_average["Rata-rata_2020"],
+                        laki_perkotaan_average["Rata-rata_2021"]
                     ]
                     
                     fig, ax =plt.subplots()
