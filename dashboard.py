@@ -160,7 +160,7 @@ if option_menu == 'Analisis Data':
                     # sns.barplot(data=perempuan_perkotaan_average, x=tahun, y=rata_rata_perempuan_perkotaan, ax=ax, color='yellow')
 
                     # sns.barplot(data=perempuan_perkotaan_average, x=tahun, y=rata_rata_perempuan_perkotaan, ax=ax, color='yellow')
-                    # st.pyplot(fig)
+                    st.pyplot(fig)
 
                 with col_aa2:
                     penjelasan2 = st.container(border=True)
