@@ -86,13 +86,13 @@ if option_menu == 'Analisis Data':
                 col_a1, col_a2 = st.columns(2)
                 with col_a1:
                     tahun = ['2018', '2019', '2020', '2021']
-                    perkotaan_average = {
+                    laki_perkotaan_average = {
                         "Rata-rata_2018" : data_gender_pertahun_perkotaan["2018_laki-laki"].mean(),
                         "Rata-rata_2019" : data_gender_pertahun_perkotaan["2019_laki-laki"].mean(),
                         "Rata-rata_2020" : data_gender_pertahun_perkotaan["2020_laki-laki"].mean(),
                         "Rata-rata_2021" : data_gender_pertahun_perkotaan["2021_laki-laki"].mean()
                     }
-                    rata_rata_Laki_Perkotaan = [
+                    rata_rata_laki_Perkotaan = [
                         perkotaan_average["Rata-rata_2018"],
                         perkotaan_average["Rata-rata_2019"],
                         perkotaan_average["Rata-rata_2020"],
@@ -100,10 +100,10 @@ if option_menu == 'Analisis Data':
                     ]
                     
                     fig, ax =plt.subplots()
-                    for i, jumlah in enumerate(rata_rata_Laki_Perkotaan):
+                    for i, jumlah in enumerate(rata_rata_laki_Perkotaan):
                         ax.text(tahun[i], jumlah + 0.5, f"{jumlah:.2f}", ha='center', fontsize=10, color='black')
 
-                    sns.barplot(data=perkotaan_average, x=tahun, y=rata_rata_Laki_Perkotaan, ax=ax, color='silver')
+                    sns.barplot(data=laki_perkotaan_average, x=tahun, y=rata_rata_laki_Perkotaan, ax=ax, color='silver')
                     st.pyplot(fig)
 
 
