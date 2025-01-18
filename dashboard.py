@@ -153,27 +153,11 @@ if option_menu == 'Analisis Data':
 
 
                     fig, ax =plt.subplots(1, 2, figsize=(14, 6), sharey=True)
-                    # for i, jumlah in enumerate(rata_rata_perempuan_perkotaan):
-                    #     ax.text(tahun[i], jumlah + 0.2, f"{jumlah:.2f}", ha='center', fontsize=10, color='black')
+                    for i, jumlah in enumerate(rata_rata_perempuan_perkotaan):
+                        ax.text(tahun[i], jumlah + 0.2, f"{jumlah:.2f}", ha='center', fontsize=10, color='black')
 
-                    sns.barplot(x=tahun, y=laki_perkotaan_average, ax=ax[0], color='blue')
-                    for i, jumlah in enumerate(laki_perkotaan_average):
-                        ax[0].text(i, jumlah + 0.5, f"{jumlah:.2f}", ha='center', fontsize=10, color='black')
-                    ax[0].set_title("Data Laki-Laki Perkotaan")
-                    ax[0].set_xlabel("Tahun")
-                    ax[0].set_ylabel("Rata-Rata")
-
-                    sns.barplot(x=tahun, y=laki_perkotaan_average, ax=ax[0], color='blue')
-                    for i, jumlah in enumerate(laki_perkotaan_average):
-                        ax[0].text(i, jumlah + 0.5, f"{jumlah:.2f}", ha='center', fontsize=10, color='black')
-                    ax[0].set_title("Data Laki-Laki Perkotaan")
-                    ax[0].set_xlabel("Tahun")
-                    ax[0].set_ylabel("Rata-Rata")
-
-                
-                    # sns.barplot(data=perempuan_perkotaan_average, x=tahun, y=rata_rata_perempuan_perkotaan, ax=ax, color='yellow')
-
-                    # sns.barplot(data=perempuan_perkotaan_average, x=tahun, y=rata_rata_perempuan_perkotaan, ax=ax, color='yellow')
+                    sns.barplot(data=perempuan_perkotaan_average, x=tahun, y=rata_rata_perempuan_perkotaan, ax=ax, color='yellow')
+                    sns.barplot(data=perempuan_perkotaan_average, x=tahun, y=rata_rata_perempuan_perkotaan, ax=ax, color='yellow')
                     st.pyplot(fig)
 
                 with col_aa2:
